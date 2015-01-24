@@ -16,4 +16,4 @@ ENV TUTUM_HOST https://dashboard.tutum.co/
 ADD run.sh /
 
 EXPOSE 2375
-CMD ["/run.sh"]
+ENTRYPOINT ["/run.sh"]
