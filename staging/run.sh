@@ -99,4 +99,4 @@ EOF
 echo "Using tutum-agent.conf:"
 cat /etc/tutum/agent/tutum-agent.conf
 
-exec /usr/bin/tutum-agent -stdout $@
+exec /usr/bin/tutum-agent -stdout "$@"
