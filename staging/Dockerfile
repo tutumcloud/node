@@ -10,7 +10,8 @@ RUN echo deb [arch=amd64] $TUTUM_REPO tutum main > /etc/apt/sources.list.d/tutum
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq tutum-agent
 
 ENV CERT_COMMON_NAME *.node.tutum.io
-ENV DOCKER_HOST tcp://0.0.0.0:2375
+ENV DOCKER_HOST unix:///var/run/docker.sock
+ENV DOCKER_HOST_LISTEN tcp://0.0.0.0:2375
 ENV TUTUM_HOST https://dashboard.tutum.co/
 
 ADD run.sh /

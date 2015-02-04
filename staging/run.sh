@@ -89,7 +89,7 @@ mkdir -p /etc/tutum/agent/
 cat > /etc/tutum/agent/tutum-agent.conf <<EOF
 {
     "CertCommonName":"${CERT_COMMON_NAME}",
-    "DockerHost":"${DOCKER_HOST}",
+    "DockerHost":"${DOCKER_HOST_LISTEN}",
     "TutumHost":"${TUTUM_HOST}",
     "TutumToken":"${TUTUM_TOKEN}",
     "TutumUUID":"${TUTUM_UUID}"
