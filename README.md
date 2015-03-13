@@ -6,7 +6,7 @@ Get your `<token>` by clicking on `Bring your own node` in Tutum's [Nodes dashbo
 
 ## Usage (using Docker)
 
-	docker run -d --net=host --privileged -e TUTUM_TOKEN=<token> tutum/node
+	docker run -d --net=host --privileged --restart=always -e TUTUM_TOKEN=<token> tutum/node
 
 ## Usage (using Vagrant)
 
