@@ -86,7 +86,8 @@ rm -rf /var/run/docker.pid
 ### End jpetazzo/dind wrapdocker
 
 mkdir -p /etc/tutum/agent/
-cat > /etc/tutum/agent/tutum-agent.conf <<EOF
+if [ ! -f "/etc/tutum/agent/tutum-agent.conf" ]; then
+    cat > /etc/tutum/agent/tutum-agent.conf <<EOF
 {
     "CertCommonName":"${CERT_COMMON_NAME}",
     "DockerHost":"${DOCKER_HOST_LISTEN}",
@@ -95,6 +96,7 @@ cat > /etc/tutum/agent/tutum-agent.conf <<EOF
     "TutumUUID":"${TUTUM_UUID}"
 }
 EOF
+fi
 
 echo "Using tutum-agent.conf:"
 cat /etc/tutum/agent/tutum-agent.conf
