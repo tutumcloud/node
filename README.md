@@ -12,3 +12,11 @@ Get your `<token>` by clicking on `Bring your own node` in Tutum's [Nodes dashbo
 
 	vagrant init tutum/node
 	TUTUM_TOKEN=<token> vagrant up
+
+## Troubleshooting
+
+If you had to restart your Vagrant VM or underlying machine and your node remains *unreachable*, restart the `tutum-agent` with this command.
+
+	service tutum-agent restart
+
+And your node should become available again.
