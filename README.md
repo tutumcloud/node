@@ -14,3 +14,11 @@ Run your Tutum node inside a Vagrant box!
 
 	vagrant init tutum/node
 	TUTUM_TOKEN=<token> vagrant up
+
+## Troubleshooting
+
+If you had to restart your Vagrant VM or underlying machine and your node remains *unreachable*, login to the VM and restart the `tutum-agent` with this command.
+
+	service tutum-agent restart
+
+And your node should become available again.
