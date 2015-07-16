@@ -1,4 +1,4 @@
-# tutum-node
+# tutum/node
 
 Get your `<token>` by clicking on `Bring your own node` in Tutum's [Nodes dashboard](https://dashboard.tutum.co/node/cluster/list/)
 
