@@ -101,4 +101,5 @@ fi
 echo "Using tutum-agent.conf:"
 cat /etc/tutum/agent/tutum-agent.conf
 
+mkdir -p /var/log/tutum && touch /var/log/tutum/docker.log && tail -F /var/log/tutum/docker.log &
 exec /usr/bin/tutum-agent -stdout "$@"
