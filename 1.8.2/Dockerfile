@@ -8,7 +8,7 @@ ADD https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind /us
 RUN chmod +x /usr/local/bin/dind
 VOLUME /var/lib/docker
 
-ENV DOCKER_VERSION=1.7.1 GPG_KEY_ID=A87A2270 TUTUM_REPO=https://repo.tutum.co/ubuntu/ CERT_COMMON_NAME=*.node.tutum.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 TUTUM_HOST=https://dashboard.tutum.co/
+ENV DOCKER_VERSION=1.8.2 GPG_KEY_ID=A87A2270 TUTUM_REPO=https://repo.tutum.co/ubuntu/ CERT_COMMON_NAME=*.node.tutum.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 TUTUM_HOST=https://dashboard.tutum.co/
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
 RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
@@ -20,6 +20,3 @@ ADD run.sh /
 
 EXPOSE 2375
 ENTRYPOINT ["/usr/local/bin/dind", "/run.sh"]
-
-# Workaround for 1.7.1 failing if cacert is not found
-RUN mkdir -p /root/.docker && touch /root/.docker/ca.pem

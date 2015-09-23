@@ -1,6 +1,14 @@
-FROM jpetazzo/dind:latest
+FROM ubuntu:trusty
 
-ENV DOCKER_VERSION=1.7.1 GPG_KEY_ID=A87A2270 GPG_KEY_STAGING_ID=90E64D7C TUTUM_REPO=https://repo-test.tutum.co/ubuntu/ CERT_COMMON_NAME=*.node.tutum.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 TUTUM_HOST=https://dashboard.tutum.co/
+RUN apt-get update && \
+	apt-get install -yq iptables apt-transport-https ca-certificates
+
+ENV DIND_COMMIT=b8bed8832b77a478360ae946a69dab5e922b194e
+ADD https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind /usr/local/bin/dind
+RUN chmod +x /usr/local/bin/dind
+VOLUME /var/lib/docker
+
+ENV DOCKER_VERSION=1.8.2 GPG_KEY_ID=A87A2270 GPG_KEY_STAGING_ID=90E64D7C TUTUM_REPO=https://repo-test.tutum.co/ubuntu/ CERT_COMMON_NAME=*.node.tutum.io DOCKER_HOST=unix:///var/run/docker.sock DOCKER_HOST_LISTEN=tcp://0.0.0.0:2375 TUTUM_HOST=https://dashboard.tutum.co/
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_STAGING_ID
 RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
@@ -11,4 +19,4 @@ RUN chmod +x /usr/lib/tutum/docker && ln -s /usr/lib/tutum/docker /usr/bin/docke
 ADD run.sh /
 
 EXPOSE 2375
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/usr/local/bin/dind", "/run.sh"]
