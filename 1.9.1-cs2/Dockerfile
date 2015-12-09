@@ -14,7 +14,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
 RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $GPG_KEY_ID
 RUN echo deb [arch=amd64] $TUTUM_REPO tutum main > /etc/apt/sources.list.d/tutum.list
 RUN apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y tutum-agent
-ADD https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION /usr/lib/tutum/docker
+ADD https://packages.docker.com/1.9/builds/linux/amd64/docker-$DOCKER_VERSION /usr/lib/tutum/docker
 RUN chmod +x /usr/lib/tutum/docker && ln -s /usr/lib/tutum/docker /usr/bin/docker
 ADD run.sh /
 
