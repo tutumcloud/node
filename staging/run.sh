@@ -8,8 +8,7 @@ if [ ! -f "/etc/tutum/agent/tutum-agent.conf" ]; then
     "DockerHost":"${DOCKER_HOST_LISTEN}",
     "TutumHost":"${TUTUM_HOST}",
     "TutumToken":"${TUTUM_TOKEN}",
-    "TutumUUID":"${TUTUM_UUID}",
-    "DockerOpts": "-s vfs"
+    "TutumUUID":"${TUTUM_UUID}"
 }
 EOF
 fi
